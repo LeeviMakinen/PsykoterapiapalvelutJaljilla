@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One-Page Website</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #f5f5f5;
+      background-image: url('img/pexels-tugce-acikyurek-3099881-28237906.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full bg-gray-800/80 backdrop-blur-md z-50">
+  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <div class="text-2xl font-bold text-gray-200">Jäljillä</div>
+    <ul class="flex space-x-6">
+      <li><a href="#home" class="text-gray-300 hover:text-white transition">Koti</a></li>
+      <li><a href="#about" class="text-gray-300 hover:text-white transition">Palvelut</a></li>
+      <li><a href="#services" class="text-gray-300 hover:text-white transition">Meistä</a></li>
+      <li><a href="#contact" class="text-gray-300 hover:text-white transition">Yhteystiedot</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Main Content Sections -->
+<div class="container mx-auto px-4 pt-20">
+  <!-- Home Section -->
+  <section id="home" class="py-24 flex items-center justify-center">
+    <div class="bg-gray-700/70 backdrop-blur-md p-10 rounded-xl shadow-lg text-center">
+      <h1 class="text-4xl font-bold mb-4 text-white">Jäljillä Erkki esimerkki</h1>
+      <p class="text-xl text-gray-300">Esimerkki Nettisivu</p>
+    </div>
+  </section>
+
+
+
+  <!-- Services Section -->
+  <section id="services" class="py-16 flex items-center justify-center">
+    <div class="bg-gray-700/70 backdrop-blur-md p-10 rounded-xl shadow-lg">
+      <h2 class="text-3xl font-bold mb-6 text-white">Palveluita</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-gray-600 p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-4 text-white">Tule käymään</h3>
+          <p class="text-gray-300">Saa kahvia</p>
+        </div>
+        <div class="bg-gray-600 p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-4 text-white">Toinen palvelu</h3>
+          <p class="text-gray-300">Saa käsidesiä</p>
+        </div>
+        <div class="bg-gray-600 p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-4 text-white">Kolmas palvelu</h3>
+          <p class="text-gray-300">Minun verorahoilla</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 flex items-center justify-center">
+    <div class="bg-gray-700/70 backdrop-blur-md p-10 rounded-xl shadow-lg">
+      <h2 class="text-3xl font-bold mb-6 text-white">Meistä</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <p class="text-gray-300">
+            Vuosia tehty hommia ympäri kyliä, esimerkkitekstiä voi kirjoittaa mitä tahansa. Leo on kiltti koira, eikä ole kärpäsellekkään pahaa tehnyt.
+            Yhdelle melkein teki, mutta ei onneksi oikeasti. Hieno poika. Iloa ja valoa vai mitä.
+          </p>
+        </div>
+        <div>
+          <p class="text-gray-300">
+            Sitten esimerkiksi voi lisää kertoa siitä, että haravointi on kivaa jne.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 flex items-center justify-center">
+    <div class="bg-gray-700/70 backdrop-blur-md p-10 rounded-xl shadow-lg w-full max-w-md">
+      <h2 class="text-3xl font-bold mb-6 text-white">Yhteystiedot</h2>
+      <div class="mt-6 text-center">
+        <p class="text-gray-300">Sähköposti: Erkki.Esimerkki@gmail.com</p>
+        <p class="text-gray-300">Phone: 040 anna mun olla</p>
+        <p class="text-gray-300">Osoite: Esimerkkikatu 30, 3245, Korvatunturi</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-6">
+  <div class="container mx-auto px-4 text-center">
+    <p class="text-gray-400">&copy; 2025 Your Company. All Rights Reserved.</p>
+  </div>
+</footer>
+</body>
+</html>
