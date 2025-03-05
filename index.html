@@ -24,16 +24,36 @@
 <nav class="fixed top-0 left-0 w-full bg-gray-800/80 backdrop-blur-md z-50">
   <div class="container mx-auto px-4 py-3 flex justify-between items-center">
     <div class="text-2xl font-bold text-gray-200">Jäljillä</div>
-    <ul class="flex space-x-6">
+
+    <!-- Desktop Navigation -->
+    <ul class="hidden md:flex space-x-6">
       <li><a href="#home" class="text-gray-300 hover:text-white transition">Koti</a></li>
       <li><a href="#about" class="text-gray-300 hover:text-white transition">Palvelut</a></li>
       <li><a href="#services" class="text-gray-300 hover:text-white transition">Meistä</a></li>
       <li><a href="#contact" class="text-gray-300 hover:text-white transition">Yhteystiedot</a></li>
     </ul>
+
+    <!-- Mobile Navigation Dropdown -->
+    <div class="md:hidden">
+      <button id="mobile-menu-toggle" class="text-gray-300 hover:text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
+      <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-gray-800 py-4 px-4">
+        <ul class="space-y-4">
+          <li><a href="#home" class="block text-gray-300 hover:text-white transition">Koti</a></li>
+          <li><a href="#about" class="block text-gray-300 hover:text-white transition">Palvelut</a></li>
+          <li><a href="#services" class="block text-gray-300 hover:text-white transition">Meistä</a></li>
+          <li><a href="#contact" class="block text-gray-300 hover:text-white transition">Yhteystiedot</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </nav>
 
-<!-- Main Content Sections -->
+<!-- Rest of the content remains the same as in the original HTML -->
 <div class="container mx-auto px-4 pt-20">
   <!-- Home Section -->
   <section id="home" class="py-24 flex items-center justify-center">
@@ -42,8 +62,6 @@
       <p class="text-xl text-gray-300">Esimerkki Nettisivu</p>
     </div>
   </section>
-
-
 
   <!-- Services Section -->
   <section id="services" class="py-16 flex items-center justify-center">
@@ -105,5 +123,24 @@
     <p class="text-gray-400">&copy; 2025 Your Company. All Rights Reserved.</p>
   </div>
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when a link is clicked
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  });
+</script>
 </body>
 </html>
