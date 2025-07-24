@@ -173,6 +173,7 @@
     /* Section Styles */
     section {
       padding: 4rem 0;
+      scroll-margin-top: 40px;
     }
 
     .section-content {
@@ -467,7 +468,7 @@
     <!-- About & Education Section -->
     <section id="about" aria-labelledby="about-heading">
       <div class="section-content">
-        <h2 id="about-heading">Minä ja Koulutus</h2>
+        <h2 id="about-heading">Minä ja koulutus</h2>
 
         <!-- About -->
         <div class="content-card">
@@ -588,11 +589,8 @@
 
     mobileToggle.addEventListener('click', function() {
       const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
-
       mobileToggle.setAttribute('aria-expanded', !isExpanded);
       mobileMenu.classList.toggle('active');
-
-      // Update button text for screen readers
       mobileToggle.setAttribute('aria-label',
               isExpanded ? 'Avaa navigaatiovalikko' : 'Sulje navigaatiovalikko'
       );
@@ -623,8 +621,8 @@
       header.addEventListener('click', function() {
         const content = document.getElementById(header.getAttribute('aria-controls'));
         const isExpanded = header.getAttribute('aria-expanded') === 'true';
+        const isJumpingScenario = !isExpanded && document.querySelector('.accordion-header[aria-expanded="true"]');
 
-        // Close all other accordions
         accordionHeaders.forEach(otherHeader => {
           if (otherHeader !== header) {
             otherHeader.setAttribute('aria-expanded', 'false');
@@ -633,12 +631,25 @@
           }
         });
 
-        // Toggle current accordion
         header.setAttribute('aria-expanded', !isExpanded);
         content.classList.toggle('expanded');
+
+        if (isJumpingScenario) {
+          requestAnimationFrame(() => {
+            const navBar = document.querySelector('nav');
+            const navBarHeight = navBar ? navBar.offsetHeight : 80;
+            const headerRect = header.getBoundingClientRect();
+            const targetTop = navBarHeight + 16;
+            const scrollCorrection = headerRect.top - targetTop;
+
+            window.scrollBy({
+              top: scrollCorrection,
+              behavior: 'auto'
+            });
+          });
+        }
       });
 
-      // Keyboard support for accordion
       header.addEventListener('keydown', function(event) {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
@@ -647,39 +658,5 @@
       });
     });
 
-    // Smooth scrolling for navigation links (with fallback)
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', function(event) {
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-
-        if (targetElement) {
-          event.preventDefault();
-
-          // Focus management for accessibility
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-
-          // Set focus to the target for screen readers
-          if (targetId !== '#home') {
-            const heading = targetElement.querySelector('h1, h2, h3');
-            if (heading) {
-              heading.setAttribute('tabindex', '-1');
-              heading.focus();
-              // Remove tabindex after focus
-              setTimeout(() => {
-                heading.removeAttribute('tabindex');
-              }, 100);
-            }
-          }
-        }
-      });
-    });
   });
 </script>
-</body>
-</html>
