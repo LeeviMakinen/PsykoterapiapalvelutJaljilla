@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>One-Page Website</title>
+  <title>Psykoterapiapalvelut Jäljillä</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html {
@@ -17,6 +17,15 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
     }
+    /* Tyyli piilotetulle sisällölle ja siirtymälle (koskee vain palveluita) */
+    .accordion-content {
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out;
+      max-height: 0;
+    }
+    .accordion-content.open {
+      max-height: 2000px; /* Riittävän suuri arvo sisällön näyttämiseksi */
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -28,8 +37,8 @@
     <!-- Desktop Navigation -->
     <ul class="hidden md:flex space-x-6">
       <li><a href="#home" class="text-gray-300 hover:text-white transition">Koti</a></li>
-      <li><a href="#about" class="text-gray-300 hover:text-white transition">Palvelut</a></li>
-      <li><a href="#services" class="text-gray-300 hover:text-white transition">Meistä</a></li>
+      <li><a href="#about" class="text-gray-300 hover:text-white transition">Minä</a></li>
+      <li><a href="#services" class="text-gray-300 hover:text-white transition">Palvelut</a></li>
       <li><a href="#contact" class="text-gray-300 hover:text-white transition">Yhteystiedot</a></li>
     </ul>
 
@@ -44,8 +53,8 @@
       <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-gray-800 py-4 px-4">
         <ul class="space-y-4">
           <li><a href="#home" class="block text-gray-300 hover:text-white transition">Koti</a></li>
-          <li><a href="#about" class="block text-gray-300 hover:text-white transition">Palvelut</a></li>
-          <li><a href="#services" class="block text-gray-300 hover:text-white transition">Meistä</a></li>
+          <li><a href="#about" class="block text-gray-300 hover:text-white transition">Minä</a></li>
+          <li><a href="#services" class="block text-gray-300 hover:text-white transition">Palvelut</a></li>
           <li><a href="#contact" class="block text-gray-300 hover:text-white transition">Yhteystiedot</a></li>
         </ul>
       </div>
@@ -53,52 +62,81 @@
   </div>
 </nav>
 
-<!-- Rest of the content remains the same as in the original HTML -->
 <div class="container mx-auto px-4 pt-20">
   <!-- Home Section -->
   <section id="home" class="py-24">
     <div class="bg-gray-700/70 backdrop-blur-md p-10 rounded-xl shadow-lg">
-      <h1 class="text-4xl font-bold mb-4 text-white">Jäljillä Erkki esimerkki</h1>
-      <p class="text-xl text-gray-300">Esimerkki Nettisivu</p>
+      <h1 class="text-4xl font-bold mb-4 text-white">Psykoterapiapalvelut Jäljillä</h1>
+      <p class="text-xl text-gray-300">Sari Jäntti</p>
+    </div>
+  </section>
+
+  <!-- About & Koulutus Section -->
+  <section id="about" class="py-16">
+    <div class="bg-gray-700/70 backdrop-blur-md p-10 rounded-xl shadow-lg">
+      <h2 class="text-3xl font-bold mb-6 text-white">Minä ja Koulutus</h2>
+      <div class="space-y-8">
+        <!-- Minä -->
+        <div class="bg-gray-600 p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-4 text-white">Minä</h3>
+          <div class="text-gray-300 space-y-4">
+            <p>
+              Minä olen kudelma kohtaamisista, kokemuksista ja vuorovaikutuksista. Minussa on jälkiä kaikista niistä ihmisistä, joita olen kohdannut tai he ovat olleet osa elämääni. Jokainen katse, sana tai teko on jättänyt minuun jäljen.
+            </p>
+            <p>
+              He ovat vahingoittaneet minua, auttaneet, tuoneet kärsimystä, satuttaneet, opettaneet, asettaneet esteitä tielleni ja joskus he ovat nostaneet minut pystyyn, kun omat voimat eivät ole riittäneet. Jäljet muokkaavat käsitystä itsestä, muista ihmisistä tai maailmasta. Jäljet näkyvät elämässäni nykyhetkessä nyky oireina tai reaktioina ympäristön tapahtumiin.
+            </p>
+          </div>
+        </div>
+        <!-- Koulutus -->
+        <div class="bg-gray-600 p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-4 text-white">Koulutus</h3>
+          <div class="text-gray-300">
+            <ul class="list-disc list-inside space-y-2">
+              <li>Psykiatrinen sairaanhoitaja</li>
+              <li>Toiminnallisen ryhmätyön tutkinto -TRO</li>
+              <li>Avainhenkilökoulutus, väkivaltatyö</li>
+              <li>Traumapsykoterapeutti</li>
+              <li>EMDR-terapeutti</li>
+              <li>Sensomotorinen psykoterapia - 1 & 2 taso</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Services Section -->
   <section id="services" class="py-16">
     <div class="bg-gray-700/70 backdrop-blur-md p-10 rounded-xl shadow-lg">
-      <h2 class="text-3xl font-bold mb-6 text-white">Palveluita</h2>
-      <div class="grid md:grid-cols-3 gap-6">
+      <h2 class="text-3xl font-bold mb-6 text-white">Palvelut</h2>
+      <div class="space-y-8">
+        <!-- Psykoterapia -->
         <div class="bg-gray-600 p-6 rounded-lg">
-          <h3 class="text-xl font-semibold mb-4 text-white">Tule käymään</h3>
-          <p class="text-gray-300">Saa kahvia</p>
+          <h3 class="accordion-toggle text-xl font-semibold text-white cursor-pointer flex justify-between items-center">
+            <span>Psykoterapia</span>
+            <svg class="accordion-icon w-6 h-6 text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </h3>
+          <div class="accordion-content text-gray-300 space-y-4 pt-4">
+            <p>Psykoterapia alkaa 1–2 tutustumiskäynnillä, jossa yhdessä arvioidaan tämän terapian ja terapeutin soveltuvuutta juuri sinulle. Traumapsykoterapia sopii monenlaisten elämänkokemusten työstämiseen.</p>
+            <p>Traumatisoituminen voi olla yksittäisen tapahtuman seurausta tai se voi syntyä pitkään jatkuvan ja toistuvien sietokyvyn ylittävien tapahtuminen tai olosuhteiden seurauksena. Trauma on henkilökohtainen sietokyvyn ylittävä kokemus, joka rikkoo ihmisen rajat. Traumatisoivista tapahtumista jää pirstaloituneita muistoja, helposti aktivoituva neurobiologisia reaktioita ja ei-sanallisia muistoja. Se saa aikaan vaurion, joka piiloutuu ihmeltä itseltään, mutta siihen liittyvät keholliset kokemukset, tunteet, ajatukset ja muistot voivat aktivoitua ikään kuin tapahtumat olisivat osa nykyhetkeä. Aktivoituneet reaktiot ovat kehon ja mielen automaattisia vastauksia, jotka kertovat sanatonta tarinaa, jota traumatisoitunut ei kognitiivisella tasolla tiedosta. Varhaiset kokemukset muodostavat muistoista tiedostamattomia odotuksia, jotka vaikuttavat nykyhetken toimintaan.</p>
+            <p>Liian tuskallisten traumamuistojen ja niitä aktivoivien tekijöiden vältteleminen on yritys selviytyä elämässä. Sietämättömien kehollisten reaktioiden, tunteiden tai ajatusten välttely kapeuttaa elämää ja estää toipumiseen johtavaa kokemusten sanoittamista. Elämässä tulee tilanteita, jotka muistuttavat haavoittaneista tapahtumista. Tuolloin toimijuuden säilyttäminen nykyhetkessä voi olla vaikeaa ja luottamus omaan selviytymiseen heikkenee.</p>
+            <p>Kun kompleksinen trauma on syntynyt läheisissä ihmissuhteissa, se saa välttämään luottamuksellisia suhteita, myös terapia suhteeseen sitoutumista. Vaikka traumatisoitunut tietäisi olevansa vuorovaikutuksessa turvassa, voi tuntua mahdottomalta tunnistaa menneiden uhkien olemassaolo, joita keho, tunteet ja mieli kantavat mukanaan. Nuo uhat, lapsuudessa aivoihin rakentuneet ennakoinnit ja uskomukset vaativat muuttuakseen pitkäaikaista, turvallista, arvostavaa ja johdonmukaista suhtautumista. Psykoterapeuttisella suhteella on selkeät rajat, jotka rakentavat turvallisuutta. Rajojen sisällä on mahdollista rakentaa muutos ja usko itseen.</p>
+            <p>Traumapsykoterapia jaksottuu kolmivaiheisen hoitomallin mukaan. Hoidon alkuvaiheessa pääpaino on vakauttamisessa, nykyhetkessä olevien oireiden kartoittamisessa ja yhteyteen mahdollisiin traumaattisiin tapahtumiin. Työskentelyssä pyritään säätelemään kehon, tunteiden ja mielen reaktioita, jotta toimijuus nykyhetkessä voisi vahvistua. Riittävän vakauden saavuttamisen jälkeen voidaan lähteä käsittelemään tarkemmin traumaattisia tapahtumia ja niiden vaikutusta itseen ja omaan elämään. Hoidon loppuvaiheessa keskitytään normaalin elämän tukemiseen sekä tulevaisuuteen suuntautuvaan työskentelyyn. Työskentelyssä keskitytään myös kehon aistimuksiin, liikkeisiin ja autonomisen hermoston reaktioihin. Menetelmä ottaa huomioon, miten trauma vaikuttaa kehon säätelyjärjestelmiin ja pyrkii palauttamaan tasapainoa.</p>
+          </div>
         </div>
+        <!-- EMDR -->
         <div class="bg-gray-600 p-6 rounded-lg">
-          <h3 class="text-xl font-semibold mb-4 text-white">Toinen palvelu</h3>
-          <p class="text-gray-300">Saa käsidesiä</p>
-        </div>
-        <div class="bg-gray-600 p-6 rounded-lg">
-          <h3 class="text-xl font-semibold mb-4 text-white">Kolmas palvelu</h3>
-          <p class="text-gray-300">Minun verorahoilla</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-16">
-    <div class="bg-gray-700/70 backdrop-blur-md p-10 rounded-xl shadow-lg">
-      <h2 class="text-3xl font-bold mb-6 text-white">Meistä</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div>
-          <p class="text-gray-300">
-            Vuosia tehty hommia ympäri kyliä, esimerkkitekstiä voi kirjoittaa mitä tahansa. Leo on kiltti koira, eikä ole kärpäsellekkään pahaa tehnyt.
-            Yhdelle melkein teki, mutta ei onneksi oikeasti. Hieno poika. Iloa ja valoa vai mitä.
-          </p>
-        </div>
-        <div>
-          <p class="text-gray-300">
-            Sitten esimerkiksi voi lisää kertoa siitä, että haravointi on kivaa jne.
-          </p>
+          <h3 class="accordion-toggle text-xl font-semibold text-white cursor-pointer flex justify-between items-center">
+            <span>EMDR</span>
+            <svg class="accordion-icon w-6 h-6 text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </h3>
+          <div class="accordion-content text-gray-300 space-y-4 pt-4">
+            <p>EMDR on lyhytterapia muoto, jota voidaan käyttää vaikeiden kokemusten ja nykyisyyttä häiritsevien muistojen työstämiseen. Menetelmän perustana on asiakkaan omat elämänkokemukset, ja hänen kykynsä ja halunsa kohdata kokemuksiinsa liittyviä vaikeita tunteita. EMDR-terapia antaa mahdollisuuden vaikeiden kokemusten ja nykyisyyttä häiritsevien muistojen työstämiseen. Menetelmän käyttö voi merkittävästi nopeuttaa traumaattisesta tapahtumasta toipumista ja vähentää stressiä menneisyyden tapahtumista. <strong>EMDR aktivoi kehon ja mielen luonnollista toipumisjärjestelmää.</strong></p>
+            <p>EMDR-lyhenne tulee englanninkielisistä sanoista Eye Movement Desensitization and Reprocessing. EMDR on Suomessa vuonna 1994 käyttöön otettu ja kohtalaisesti yleistynyt lyhytkestoisen psykoterapiatekniikan muoto, jota voidaan soveltaa PTSD:n hoidon ohella myös muiden sellaisten ahdistuneisuushäiriöiden hoitoon, joissa traumaattisilla, ihmisen sietokyvyn ylittävillä muistoilla on keskeinen merkitys.</p>
+            <p>Muistojen ja niihin liittyvien tunteiden, kehon tuntemusta ja negatiivisten kognitioiden käsittely tapahtuu terapeutin tuella turvallisessa tilanteessa bilateraalisen, kehon molemmille puolille tulevan aistiärsykkeen tuella. Muutokset tapahtuvat mielikuvissa, tunteissa, kehossa ja uskomuksissa.</p>
+            <p>Käytän EMDR:ää osana traumaterapiatyöskentelyä, mutta yksittäisten (ei toistuvien) traumojen työstämiseen se sopii myös ilman pidempää hoitosuhdetta. Lyhyt EMDR-hoito vaatii noin 5–10 tapaamista. Alussa arvioidaan, soveltuuko hoitomuoto kokemuksen työstämiseen ja tehdään suunnitelma hoidosta. Työskentelyvaihe kestää usein 5–7 kertaa, lopuksi pyritään juurruttamaan vaikutukset omaan elämään.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -106,12 +144,14 @@
 
   <!-- Contact Section -->
   <section id="contact" class="py-16">
-    <div class="bg-gray-700/70 backdrop-blur-md p-10 rounded-xl shadow-lg w-full max-w-md">
+    <div class="bg-gray-700/70 backdrop-blur-md p-10 rounded-xl shadow-lg">
       <h2 class="text-3xl font-bold mb-6 text-white">Yhteystiedot</h2>
-      <div>
-        <p class="text-gray-300">Sähköposti: Erkki.Esimerkki@gmail.com</p>
-        <p class="text-gray-300">Phone: 040 anna mun olla</p>
-        <p class="text-gray-300">Osoite: Esimerkkikatu 30, 3245, Korvatunturi</p>
+      <div class="space-y-3">
+        <p class="text-gray-300"><strong>Psykoterapiapalvelut Jäljillä</strong></p>
+        <p class="text-gray-300"><strong>Nimi:</strong> Sari Jäntti, traumapsykoterapeutti</p>
+        <p class="text-gray-300"><strong>Sähköposti:</strong> jaljilla2019@gmail.com</p>
+        <p class="text-gray-300"><strong>Puhelin:</strong> 0407349513</p>
+        <p class="text-gray-300"><strong>Vastaanotto:</strong> Savilahdenkatu 10 A 9, 50100 Mikkeli</p>
       </div>
     </div>
   </section>
@@ -120,12 +160,13 @@
 <!-- Footer -->
 <footer class="bg-gray-900 text-white py-6">
   <div class="container mx-auto px-4">
-    <p class="text-gray-400 text-left">© 2025 Your Company. All Rights Reserved.</p>
+    <p class="text-gray-400 text-left">© 2025 Psykoterapiapalvelut Jäljillä. All Rights Reserved.</p>
   </div>
 </footer>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // Mobiilivalikon toiminnallisuus
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -133,11 +174,26 @@
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Close mobile menu when a link is clicked
     const mobileMenuLinks = mobileMenu.querySelectorAll('a');
     mobileMenuLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Accordion-toiminnallisuus (koskee nyt vain palveluita)
+    const accordionToggles = document.querySelectorAll('.accordion-toggle');
+
+    accordionToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling;
+        const icon = toggle.querySelector('.accordion-icon');
+
+        content.classList.toggle('open');
+
+        if (icon) {
+          icon.classList.toggle('rotate-180');
+        }
       });
     });
   });
