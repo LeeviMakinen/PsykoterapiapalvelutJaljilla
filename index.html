@@ -4,12 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Psykoterapiapalvelut Jäljillä</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="Sari Jäntti, traumapsykoterapeutti - EMDR ja traumapsykoterapia palvelut Mikkelissä">
   <style>
+    /* CSS Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     html {
       scroll-behavior: smooth;
+      font-size: clamp(14px, 2.5vw, 18px);
     }
+
     body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #1a1a1a;
       background-color: #f5f5f5;
       background-image: url('img/pexels-tugce-acikyurek-3099881-28237906.jpg');
       background-size: cover;
@@ -17,182 +29,653 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
     }
-    /* Tyyli piilotetulle sisällölle ja siirtymälle (koskee vain palveluita) */
-    .accordion-content {
-      overflow: hidden;
-      transition: max-height 0.5s ease-in-out;
-      max-height: 0;
+
+    /* Skip Link for Screen Readers */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: #000;
+      color: #fff;
+      padding: 8px;
+      text-decoration: none;
+      z-index: 1000;
+      border-radius: 4px;
     }
-    .accordion-content.open {
-      max-height: 2000px; /* Riittävän suuri arvo sisällön näyttämiseksi */
+
+    .skip-link:focus {
+      top: 6px;
+    }
+
+    /* Navigation Styles */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(31, 41, 55, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 50;
+      border-bottom: 2px solid #4b5563;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 60px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #e5e7eb;
+      text-decoration: none;
+    }
+
+    .logo:focus {
+      outline: 2px solid #60a5fa;
+      outline-offset: 2px;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-menu a {
+      color: #d1d5db;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a:focus {
+      color: #ffffff;
+      background-color: rgba(75, 85, 99, 0.5);
+      outline: none;
+    }
+
+    .nav-menu a:focus {
+      outline: 2px solid #60a5fa;
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #d1d5db;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+
+    .mobile-toggle:focus {
+      outline: 2px solid #60a5fa;
+      background-color: rgba(75, 85, 99, 0.5);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(31, 41, 55, 0.98);
+      padding: 1rem;
+      border-top: 1px solid #4b5563;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mobile-menu a {
+      display: block;
+      color: #d1d5db;
+      text-decoration: none;
+      padding: 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a:focus {
+      color: #ffffff;
+      background-color: rgba(75, 85, 99, 0.7);
+      outline: 2px solid #60a5fa;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      padding-top: 80px;
+    }
+
+    /* Section Styles */
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-content {
+      background: rgba(55, 65, 81, 0.85);
+      backdrop-filter: blur(10px);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(75, 85, 99, 0.3);
+      max-width: none;
+      margin: 0 auto;
+    }
+
+    h1, h2, h3 {
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+    }
+
+    h3 {
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: #d1d5db;
+    }
+
+    /* Content Cards */
+    .content-card {
+      background: rgba(75, 85, 99, 0.8);
+      padding: clamp(1.2rem, 3vw, 2rem);
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(156, 163, 175, 0.2);
+    }
+
+    .content-card:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Text Styles */
+    p {
+      color: #d1d5db;
+      margin-bottom: 1rem;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      line-height: 1.7;
+      max-width: 75ch;
+    }
+
+    ul {
+      color: #d1d5db;
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      max-width: 70ch;
+    }
+
+    strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Accordion Styles */
+    .accordion-item {
+      background: rgba(75, 85, 99, 0.8);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(156, 163, 175, 0.2);
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: clamp(1rem, 3vw, 1.5rem) clamp(1.2rem, 3vw, 2rem);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+      font-weight: 600;
+      color: #ffffff;
+      transition: background-color 0.3s ease;
+      line-height: 1.3;
+    }
+
+    .accordion-header:hover {
+      background-color: rgba(107, 114, 128, 0.3);
+    }
+
+    .accordion-header:focus {
+      outline: 2px solid #60a5fa;
+      outline-offset: -2px;
+      background-color: rgba(107, 114, 128, 0.3);
+    }
+
+    .accordion-icon {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+
+    .accordion-header[aria-expanded="true"] .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0;
+      visibility: hidden;
+      transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out, visibility 0.4s ease-in-out;
+    }
+
+    .accordion-content.expanded {
+      max-height: 3000px;
+      padding: clamp(0.8rem, 2vw, 1rem) clamp(1.2rem, 3vw, 2rem) clamp(1.2rem, 3vw, 2rem) clamp(1.2rem, 3vw, 2rem);
+      visibility: visible;
+    }
+
+
+    /* Contact Section */
+    .contact-info {
+      display: grid;
+      gap: clamp(0.8rem, 2vw, 1.2rem);
+    }
+
+    .contact-item {
+      color: #d1d5db;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      line-height: 1.6;
+    }
+
+    .contact-item strong {
+      color: #ffffff;
+      display: inline-block;
+      min-width: clamp(100px, 15vw, 140px);
+    }
+
+    /* Footer */
+    footer {
+      background: #111827;
+      color: #9ca3af;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid #374151;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .container {
+        padding: 0 0.8rem;
+        padding-top: 80px;
+      }
+
+      .contact-item strong {
+        display: block;
+        margin-bottom: 0.25rem;
+        min-width: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 0.5rem;
+        padding-top: 80px;
+      }
+
+      section {
+        padding: clamp(1.5rem, 4vw, 2rem) 0;
+      }
+    }
+
+    /* High Contrast Mode Support */
+    @media (prefers-contrast: more) {
+      .section-content {
+        background: rgba(0, 0, 0, 0.9);
+        border: 2px solid #ffffff;
+      }
+
+      .content-card {
+        background: rgba(0, 0, 0, 0.8);
+        border: 1px solid #ffffff;
+      }
+
+      p, li {
+        color: #ffffff;
+      }
+    }
+
+    /* Reduced Motion Support */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+
+    /* Focus Visible Support */
+    @supports selector(:focus-visible) {
+      a:focus:not(:focus-visible),
+      button:focus:not(:focus-visible) {
+        outline: none;
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid #60a5fa;
+        outline-offset: 2px;
+      }
     }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body>
+<!-- Skip to main content link -->
+<a href="#main-content" class="skip-link">Siirry pääsisältöön</a>
+
 <!-- Navigation -->
-<nav class="fixed top-0 left-0 w-full bg-gray-800/80 backdrop-blur-md z-50">
-  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-    <div class="text-2xl font-bold text-gray-200">Jäljillä</div>
+<nav role="navigation" aria-label="Päänavigaatio">
+  <div class="nav-container">
+    <a href="#home" class="logo" aria-label="Psykoterapiapalvelut Jäljillä - Etusivu">Jäljillä</a>
 
     <!-- Desktop Navigation -->
-    <ul class="hidden md:flex space-x-6">
-      <li><a href="#home" class="text-gray-300 hover:text-white transition">Koti</a></li>
-      <li><a href="#about" class="text-gray-300 hover:text-white transition">Meistä</a></li>
-      <li><a href="#services" class="text-gray-300 hover:text-white transition">Palvelut</a></li>
-      <li><a href="#contact" class="text-gray-300 hover:text-white transition">Yhteystiedot</a></li>
+    <ul class="nav-menu" role="menubar">
+      <li role="none"><a href="#home" role="menuitem">Koti</a></li>
+      <li role="none"><a href="#about" role="menuitem">Meistä</a></li>
+      <li role="none"><a href="#services" role="menuitem">Palvelut</a></li>
+      <li role="none"><a href="#contact" role="menuitem">Yhteystiedot</a></li>
     </ul>
 
-    <!-- Mobile Navigation Dropdown -->
-    <div class="md:hidden">
-      <button id="mobile-menu-toggle" class="text-gray-300 hover:text-white focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
+    <!-- Mobile Navigation Toggle -->
+    <button class="mobile-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Avaa navigaatiovalikko">
+      ☰
+    </button>
 
-      <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-gray-800 py-4 px-4">
-        <ul class="space-y-4">
-          <li><a href="#home" class="block text-gray-300 hover:text-white transition">Koti</a></li>
-          <li><a href="#about" class="block text-gray-300 hover:text-white transition">Meistä</a></li>
-          <li><a href="#services" class="block text-gray-300 hover:text-white transition">Palvelut</a></li>
-          <li><a href="#contact" class="block text-gray-300 hover:text-white transition">Yhteystiedot</a></li>
-        </ul>
-      </div>
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="mobile-menu" role="menu" aria-labelledby="mobile-toggle">
+      <ul>
+        <li><a href="#home" role="menuitem">Koti</a></li>
+        <li><a href="#about" role="menuitem">Meistä</a></li>
+        <li><a href="#services" role="menuitem">Palvelut</a></li>
+        <li><a href="#contact" role="menuitem">Yhteystiedot</a></li>
+      </ul>
     </div>
   </div>
 </nav>
 
-<div class="container mx-auto px-4 pt-20">
-  <!-- Home Section -->
-  <section id="home" class="py-24">
-    <div class="bg-gray-700/70 backdrop-blur-md p-6 md:p-10 rounded-xl shadow-lg">
-      <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white">Psykoterapiapalvelut Jäljillä</h1>
-      <p class="text-xl text-gray-300">Sari Jäntti</p>
-    </div>
-  </section>
+<div class="container">
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Home Section -->
+    <section id="home" aria-labelledby="home-heading">
+      <div class="section-content">
+        <h1 id="home-heading">Psykoterapiapalvelut Jäljillä</h1>
+        <p class="subtitle">Sari Jäntti</p>
+      </div>
+    </section>
 
-  <!-- About & Koulutus Section -->
-  <section id="about" class="py-16">
-    <div class="bg-gray-700/70 backdrop-blur-md p-6 md:p-10 rounded-xl shadow-lg">
-      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white">Meistä ja Koulutus</h2>
-      <div class="space-y-8">
-        <!-- Meistä -->
-        <div class="bg-gray-600 p-6 rounded-lg">
-          <h3 class="text-xl font-semibold mb-4 text-white">Meistä</h3>
-          <div class="text-gray-300 space-y-4">
-            <p>
-              Minä olen kudelma kohtaamisista, kokemuksista ja vuorovaikutuksista. Minussa on jälkiä kaikista niistä ihmisistä, joita olen kohdannut tai he ovat olleet osa elämääni. Jokainen katse, sana tai teko on jättänyt minuun jäljen.
-            </p>
-            <p>
-              He ovat vahingoittaneet minua, auttaneet, tuoneet kärsimystä, satuttaneet, opettaneet, asettaneet esteitä tielleni ja joskus he ovat nostaneet minut pystyyn, kun omat voimat eivät ole riittäneet. Jäljet muokkaavat käsitystä itsestä, muista ihmisistä tai maailmasta. Jäljet näkyvät elämässäni nykyhetkessä nyky oireina tai reaktioina ympäristön tapahtumiin.
-            </p>
-          </div>
+    <!-- About & Education Section -->
+    <section id="about" aria-labelledby="about-heading">
+      <div class="section-content">
+        <h2 id="about-heading">Meistä ja Koulutus</h2>
+
+        <!-- About -->
+        <div class="content-card">
+          <h3>Meistä</h3>
+          <p>
+            Minä olen kudelma kohtaamisista, kokemuksista ja vuorovaikutuksista. Minussa on jälkiä kaikista niistä ihmisistä, joita olen kohdannut tai he ovat olleet osa elämääni. Jokainen katse, sana tai teko on jättänyt minuun jäljen.
+          </p>
+          <p>
+            He ovat vahingoittaneet minua, auttaneet, tuoneet kärsimystä, satuttaneet, opettaneet, asettaneet esteitä tielleni ja joskus he ovat nostaneet minut pystyyn, kun omat voimat eivät ole riittäneet. Jäljet muokkaavat käsitystä itsestä, muista ihmisistä tai maailmasta. Jäljet näkyvät elämässäni nykyhetkessä nyky oireina tai reaktioina ympäristön tapahtumiin.
+          </p>
         </div>
-        <!-- Koulutus -->
-        <div class="bg-gray-600 p-6 rounded-lg">
-          <h3 class="text-xl font-semibold mb-4 text-white">Koulutus</h3>
-          <div class="text-gray-300">
-            <ul class="list-disc list-inside space-y-2">
-              <li>Psykiatrinen sairaanhoitaja</li>
-              <li>Toiminnallisen ryhmätyön tutkinto -TRO</li>
-              <li>Avainhenkilökoulutus, väkivaltatyö</li>
-              <li>Traumapsykoterapeutti</li>
-              <li>EMDR-terapeutti</li>
-              <li>Sensomotorinen psykoterapia - 1 & 2 taso</li>
-            </ul>
-          </div>
+
+        <!-- Education -->
+        <div class="content-card">
+          <h3>Koulutus</h3>
+          <ul>
+            <li>Psykiatrinen sairaanhoitaja</li>
+            <li>Toiminnallisen ryhmätyön tutkinto -TRO</li>
+            <li>Avainhenkilökoulutus, väkivaltatyö</li>
+            <li>Traumapsykoterapeutti</li>
+            <li>EMDR-terapeutti</li>
+            <li>DKT- perusteet</li>
+            <li>Sensomotorinen psykoterapia - 1 & 2 taso</li>
+          </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Services Section -->
-  <section id="services" class="py-16">
-    <div class="bg-gray-700/70 backdrop-blur-md p-6 md:p-10 rounded-xl shadow-lg">
-      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white">Palvelut</h2>
-      <div class="space-y-8">
-        <!-- Psykoterapia -->
-        <div class="bg-gray-600 p-6 rounded-lg">
-          <h3 class="accordion-toggle text-xl font-semibold text-white cursor-pointer flex justify-between items-center">
+    <!-- Services Section -->
+    <section id="services" aria-labelledby="services-heading">
+      <div class="section-content">
+        <h2 id="services-heading">Palvelut</h2>
+
+        <!-- Psychotherapy Accordion -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false" aria-controls="psychotherapy-content" id="psychotherapy-header">
             <span>Psykoterapia</span>
-            <svg class="accordion-icon w-6 h-6 text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-          </h3>
-          <div class="accordion-content text-gray-300 space-y-4 pt-4">
+            <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div id="psychotherapy-content" class="accordion-content" aria-labelledby="psychotherapy-header">
             <p>Psykoterapia alkaa 1–2 tutustumiskäynnillä, jossa yhdessä arvioidaan tämän terapian ja terapeutin soveltuvuutta juuri sinulle. Traumapsykoterapia sopii monenlaisten elämänkokemusten työstämiseen.</p>
+
             <p>Traumatisoituminen voi olla yksittäisen tapahtuman seurausta tai se voi syntyä pitkään jatkuvan ja toistuvien sietokyvyn ylittävien tapahtuminen tai olosuhteiden seurauksena. Trauma on henkilökohtainen sietokyvyn ylittävä kokemus, joka rikkoo ihmisen rajat. Traumatisoivista tapahtumista jää pirstaloituneita muistoja, helposti aktivoituva neurobiologisia reaktioita ja ei-sanallisia muistoja. Se saa aikaan vaurion, joka piiloutuu ihmeltä itseltään, mutta siihen liittyvät keholliset kokemukset, tunteet, ajatukset ja muistot voivat aktivoitua ikään kuin tapahtumat olisivat osa nykyhetkeä. Aktivoituneet reaktiot ovat kehon ja mielen automaattisia vastauksia, jotka kertovat sanatonta tarinaa, jota traumatisoitunut ei kognitiivisella tasolla tiedosta. Varhaiset kokemukset muodostavat muistoista tiedostamattomia odotuksia, jotka vaikuttavat nykyhetken toimintaan.</p>
+
             <p>Liian tuskallisten traumamuistojen ja niitä aktivoivien tekijöiden vältteleminen on yritys selviytyä elämässä. Sietämättömien kehollisten reaktioiden, tunteiden tai ajatusten välttely kapeuttaa elämää ja estää toipumiseen johtavaa kokemusten sanoittamista. Elämässä tulee tilanteita, jotka muistuttavat haavoittaneista tapahtumista. Tuolloin toimijuuden säilyttäminen nykyhetkessä voi olla vaikeaa ja luottamus omaan selviytymiseen heikkenee.</p>
+
             <p>Kun kompleksinen trauma on syntynyt läheisissä ihmissuhteissa, se saa välttämään luottamuksellisia suhteita, myös terapia suhteeseen sitoutumista. Vaikka traumatisoitunut tietäisi olevansa vuorovaikutuksessa turvassa, voi tuntua mahdottomalta tunnistaa menneiden uhkien olemassaolo, joita keho, tunteet ja mieli kantavat mukanaan. Nuo uhat, lapsuudessa aivoihin rakentuneet ennakoinnit ja uskomukset vaativat muuttuakseen pitkäaikaista, turvallista, arvostavaa ja johdonmukaista suhtautumista. Psykoterapeuttisella suhteella on selkeät rajat, jotka rakentavat turvallisuutta. Rajojen sisällä on mahdollista rakentaa muutos ja usko itseen.</p>
+
             <p>Traumapsykoterapia jaksottuu kolmivaiheisen hoitomallin mukaan. Hoidon alkuvaiheessa pääpaino on vakauttamisessa, nykyhetkessä olevien oireiden kartoittamisessa ja yhteyteen mahdollisiin traumaattisiin tapahtumiin. Työskentelyssä pyritään säätelemään kehon, tunteiden ja mielen reaktioita, jotta toimijuus nykyhetkessä voisi vahvistua. Riittävän vakauden saavuttamisen jälkeen voidaan lähteä käsittelemään tarkemmin traumaattisia tapahtumia ja niiden vaikutusta itseen ja omaan elämään. Hoidon loppuvaiheessa keskitytään normaalin elämän tukemiseen sekä tulevaisuuteen suuntautuvaan työskentelyyn. Työskentelyssä keskitytään myös kehon aistimuksiin, liikkeisiin ja autonomisen hermoston reaktioihin. Menetelmä ottaa huomioon, miten trauma vaikuttaa kehon säätelyjärjestelmiin ja pyrkii palauttamaan tasapainoa.</p>
           </div>
         </div>
-        <!-- EMDR -->
-        <div class="bg-gray-600 p-6 rounded-lg">
-          <h3 class="accordion-toggle text-xl font-semibold text-white cursor-pointer flex justify-between items-center">
+
+        <!-- EMDR Accordion -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false" aria-controls="emdr-content" id="emdr-header">
             <span>EMDR</span>
-            <svg class="accordion-icon w-6 h-6 text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-          </h3>
-          <div class="accordion-content text-gray-300 space-y-4 pt-4">
+            <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div id="emdr-content" class="accordion-content" aria-labelledby="emdr-header">
             <p>EMDR on lyhytterapia muoto, jota voidaan käyttää vaikeiden kokemusten ja nykyisyyttä häiritsevien muistojen työstämiseen. Menetelmän perustana on asiakkaan omat elämänkokemukset, ja hänen kykynsä ja halunsa kohdata kokemuksiinsa liittyviä vaikeita tunteita. EMDR-terapia antaa mahdollisuuden vaikeiden kokemusten ja nykyisyyttä häiritsevien muistojen työstämiseen. Menetelmän käyttö voi merkittävästi nopeuttaa traumaattisesta tapahtumasta toipumista ja vähentää stressiä menneisyyden tapahtumista. <strong>EMDR aktivoi kehon ja mielen luonnollista toipumisjärjestelmää.</strong></p>
+
             <p>EMDR-lyhenne tulee englanninkielisistä sanoista Eye Movement Desensitization and Reprocessing. EMDR on Suomessa vuonna 1994 käyttöön otettu ja kohtalaisesti yleistynyt lyhytkestoisen psykoterapiatekniikan muoto, jota voidaan soveltaa PTSD:n hoidon ohella myös muiden sellaisten ahdistuneisuushäiriöiden hoitoon, joissa traumaattisilla, ihmisen sietokyvyn ylittävillä muistoilla on keskeinen merkitys.</p>
+
             <p>Muistojen ja niihin liittyvien tunteiden, kehon tuntemusta ja negatiivisten kognitioiden käsittely tapahtuu terapeutin tuella turvallisessa tilanteessa bilateraalisen, kehon molemmille puolille tulevan aistiärsykkeen tuella. Muutokset tapahtuvat mielikuvissa, tunteissa, kehossa ja uskomuksissa.</p>
+
             <p>Käytän EMDR:ää osana traumaterapiatyöskentelyä, mutta yksittäisten (ei toistuvien) traumojen työstämiseen se sopii myös ilman pidempää hoitosuhdetta. Lyhyt EMDR-hoito vaatii noin 5–10 tapaamista. Alussa arvioidaan, soveltuuko hoitomuoto kokemuksen työstämiseen ja tehdään suunnitelma hoidosta. Työskentelyvaihe kestää usein 5–7 kertaa, lopuksi pyritään juurruttamaan vaikutukset omaan elämään.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-16">
-    <div class="bg-gray-700/70 backdrop-blur-md p-6 md:p-10 rounded-xl shadow-lg">
-      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white">Yhteystiedot</h2>
-      <div class="space-y-3">
-        <p class="text-gray-300"><strong>Psykoterapiapalvelut Jäljillä</strong></p>
-        <p class="text-gray-300"><strong>Nimi:</strong> Sari Jäntti, traumapsykoterapeutti</p>
-        <p class="text-gray-300"><strong>Sähköposti:</strong> jaljilla2019@gmail.com</p>
-        <p class="text-gray-300"><strong>Puhelin:</strong> 0407349513</p>
-        <p class="text-gray-300"><strong>Vastaanotto:</strong> Savilahdenkatu 10 A 9, 50100 Mikkeli</p>
+    <!-- Contact Section -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="section-content">
+        <h2 id="contact-heading">Yhteystiedot</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <strong>Yritys:</strong> Psykoterapiapalvelut Jäljillä
+          </div>
+          <div class="contact-item">
+            <strong>Nimi:</strong> Sari Jäntti, traumapsykoterapeutti
+          </div>
+          <div class="contact-item">
+            <strong>Sähköposti:</strong> <a href="mailto:jaljilla2019@gmail.com" style="color: #60a5fa; text-decoration: underline;">jaljilla2019@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <strong>Puhelin:</strong> <a href="tel:+358407349513" style="color: #60a5fa; text-decoration: underline;">040 734 9513</a>
+          </div>
+          <div class="contact-item">
+            <strong>Vastaanotto:</strong> Savilahdenkatu 10 A 9, 50100 Mikkeli
+          </div>
+          <div class="contact-item">
+            <strong>Omavalvontasuunnitelma:</strong> Omavalvontasuunnitelman voit halutessasi pyytää luettavaksi.
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 </div>
 
 <!-- Footer -->
-<footer class="bg-gray-900 text-white py-6">
-  <div class="container mx-auto px-4">
-    <p class="text-gray-400 text-left">© 2025 Psykoterapiapalvelut Jäljillä. All Rights Reserved.</p>
+<footer role="contentinfo">
+  <div class="container">
+    <p>© 2025 Psykoterapiapalvelut Jäljillä. Kaikki oikeudet pidätetään.</p>
   </div>
 </footer>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Mobiilivalikon toiminnallisuus
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu functionality
+    const mobileToggle = document.querySelector('.mobile-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
 
-    mobileMenuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+    mobileToggle.addEventListener('click', function() {
+      const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+
+      mobileToggle.setAttribute('aria-expanded', !isExpanded);
+      mobileMenu.classList.toggle('active');
+
+      // Update button text for screen readers
+      mobileToggle.setAttribute('aria-label',
+              isExpanded ? 'Avaa navigaatiovalikko' : 'Sulje navigaatiovalikko'
+      );
     });
 
-    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    // Close mobile menu when clicking on links
     mobileMenuLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
+      link.addEventListener('click', function() {
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('active');
+        mobileToggle.setAttribute('aria-label', 'Avaa navigaatiovalikko');
       });
     });
 
-    // Accordion-toiminnallisuus (koskee nyt vain palveluita)
-    const accordionToggles = document.querySelectorAll('.accordion-toggle');
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!mobileToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('active');
+        mobileToggle.setAttribute('aria-label', 'Avaa navigaatiovalikko');
+      }
+    });
 
-    accordionToggles.forEach(toggle => {
-      toggle.addEventListener('click', () => {
-        const content = toggle.nextElementSibling;
-        const icon = toggle.querySelector('.accordion-icon');
+    // Accordion functionality
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
 
-        content.classList.toggle('open');
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', function() {
+        const content = document.getElementById(header.getAttribute('aria-controls'));
+        const isExpanded = header.getAttribute('aria-expanded') === 'true';
 
-        if (icon) {
-          icon.classList.toggle('rotate-180');
+        // Close all other accordions
+        accordionHeaders.forEach(otherHeader => {
+          if (otherHeader !== header) {
+            otherHeader.setAttribute('aria-expanded', 'false');
+            const otherContent = document.getElementById(otherHeader.getAttribute('aria-controls'));
+            otherContent.classList.remove('expanded');
+          }
+        });
+
+        // Toggle current accordion
+        header.setAttribute('aria-expanded', !isExpanded);
+        content.classList.toggle('expanded');
+      });
+
+      // Keyboard support for accordion
+      header.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          header.click();
+        }
+      });
+    });
+
+    // Smooth scrolling for navigation links (with fallback)
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(event) {
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+          event.preventDefault();
+
+          // Focus management for accessibility
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+
+          // Set focus to the target for screen readers
+          if (targetId !== '#home') {
+            const heading = targetElement.querySelector('h1, h2, h3');
+            if (heading) {
+              heading.setAttribute('tabindex', '-1');
+              heading.focus();
+              // Remove tabindex after focus
+              setTimeout(() => {
+                heading.removeAttribute('tabindex');
+              }, 100);
+            }
+          }
         }
       });
     });
